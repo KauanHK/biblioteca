@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.3">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="3660" dy="3303" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4123" dy="3526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -138,42 +138,42 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-159" value="Biblioteca" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="-520" y="-1700" width="230" height="310" as="geometry">
+          <mxGeometry x="-540" y="-1700" width="270" height="322" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-160" value="- livros: List&lt;Livro&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="26" width="230" height="26" as="geometry" />
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-160" value="- acervo: Acervo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
+          <mxGeometry y="26" width="270" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-173" value="- usuarios: List&lt;Usuario&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="52" width="230" height="26" as="geometry" />
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-173" value="- alunos: List&lt;Aluno&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
+          <mxGeometry y="48" width="270" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-244" value="- professores: List&lt;Professor&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
+          <mxGeometry y="74" width="270" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-246" value="- funcionarios: List&lt;Funcionario&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
+          <mxGeometry y="100" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-161" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="78" width="230" height="12" as="geometry" />
+          <mxGeometry y="126" width="270" height="10" as="geometry" />
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-179" value="+ gerarRelatorioEmprestimos()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="90" width="230" height="26" as="geometry" />
+          <mxGeometry y="136" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-180" value="+ gerarRelatorioMultas()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="116" width="230" height="26" as="geometry" />
+          <mxGeometry y="162" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-181" value="+ gerarRelatorioUsuarios()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="142" width="230" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-162" value="+ adicionarLivro(livro: Livro)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="168" width="230" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-163" value="+ removerLivro(livro: Livro)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="194" width="230" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-164" value="+ pesquisarLivro(titulo: Titulo)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="220" width="230" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-165" value="+ livrosDisponiveis()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="246" width="230" height="26" as="geometry" />
+          <mxGeometry y="188" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-182" value="+ cadastrarUsuario(usuario: Usuario)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
-          <mxGeometry y="272" width="230" height="26" as="geometry" />
+          <mxGeometry y="214" width="270" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-247" value="+ cadastrarProfessor(professor: Professor)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
+          <mxGeometry y="240" width="270" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-248" value="+ cadastrarFuncionario(funcionario: Funcionario)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-159">
+          <mxGeometry y="266" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="S5v_e7GPYeT_Bk_hhG6n-183" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--13" target="S5v_e7GPYeT_Bk_hhG6n-159">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -291,6 +291,29 @@
               <mxPoint x="-235" y="-910" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-229" value="Acervo" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-150" y="-1700" width="230" height="170" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-230" value="- livros: List&lt;Livro&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-229">
+          <mxGeometry y="26" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-232" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-229">
+          <mxGeometry y="52" width="230" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-236" value="+ adicionarLivro(livro: Livro)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-229">
+          <mxGeometry y="64" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-237" value="+ removerLivro(livro: Livro)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-229">
+          <mxGeometry y="90" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-238" value="+ pesquisarLivro(titulo: Titulo)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-229">
+          <mxGeometry y="116" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5v_e7GPYeT_Bk_hhG6n-239" value="+ livrosDisponiveis()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5v_e7GPYeT_Bk_hhG6n-229">
+          <mxGeometry y="142" width="230" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
