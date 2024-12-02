@@ -14,6 +14,8 @@ public class Livro {
     private final int anoPublicacao;
     private String status;
     private LocalDate dataDevolucao;
+    private boolean disponivel;
+
 
     public Livro(String titulo, String autor, int anoPublicacao) {
         this.titulo = titulo;
@@ -24,6 +26,10 @@ public class Livro {
         idCounter++;
         this.status = DISPONIVEL;
         this.dataDevolucao = null;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     public int getId() {

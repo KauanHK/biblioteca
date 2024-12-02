@@ -22,8 +22,25 @@ public class Aluno extends Pessoa{
         this.periodo = periodo;
     }
 
-    public String solicitarEmprestimo(Livro livro, String emprestimo){
+    public String solicitarEmprestimo(Livro livro, String emprestimo) {
 
+        if (!livro.isDisponivel()) {
+            return "Livro não disponível para empréstimo";
+        }
+        
+        if (getLimiteEmprestimo() <= 0) {
+            return "Limite de empréstimos excedido";
+        }
+        
+        livro.setDisponivel(false);
+        
+        setLimiteEmprestimo(getLimiteEmprestimo() - 1);
+        
+        emprestimo = "Empréstimo realizado para o aluno " + getNome() + 
+                     " - Curso: " + getCurso() + 
+                     " - Período: " + getPeriodo() + 
+                     " - Livro: " + livro.getTitulo();
+        
         return emprestimo;
     }
 

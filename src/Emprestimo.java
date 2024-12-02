@@ -47,11 +47,17 @@ public class Emprestimo {
         this.status = status;
     }
 
-    public String finalizarEmprestimo(String status, String emprestimo){
-
-
-        
-        return emprestimo;
+    public String finalizarEmprestimo() {
+        if (livro.isDisponivel()) {
+            return "Erro: O livro já está disponível e não há empréstimo ativo.";
+        }
+    
+        livro.devolver();
+        status = "Finalizado";
+        usuario.setLimiteEmprestimo(usuario.getLimiteEmprestimo() + 1);
+    
+        return "Empréstimo finalizado para o livro: " + livro.getTitulo() + " pelo usuário: " + usuario.getNome();
     }
+    
 
 }

@@ -34,19 +34,16 @@ public class Multa {
         this.status = status;
     }
 
-    public float calcularMulta(float valor){
+    public float calcularMulta(float valor, float multa) {
 
-
-        return valor;
+        return multa;
     }
 
-    public void pagar(float valor){
-
+    public void pagar(float valor) {
 
     }
 
-    public String verificarStatus(String status){
-
+    public String verificarStatus(String status) {
 
         return status;
     }

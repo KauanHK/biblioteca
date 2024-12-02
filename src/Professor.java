@@ -18,7 +18,20 @@ public class Professor extends Funcionario{
 
     public String solicitarEmprestimo(Livro livro, String emprestimo){
 
+            if (!livro.isDisponivel()) {
+                return "Livro não disponível para empréstimo";
+            }
+            
+            if (getLimiteEmprestimo() <= 0) {
+                return "Limite de empréstimos excedido";
+            }
 
-        return emprestimo;
-    }
+            setLimiteEmprestimo(getLimiteEmprestimo() - 1);
+            
+            emprestimo = "Empréstimo realizado para o professor " + getNome() + 
+                         " - Disciplina: " + getDisciplina() + 
+                         " - Livro: " + livro.getTitulo();
+            
+            return emprestimo;
+        }
 }
