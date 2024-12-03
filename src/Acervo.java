@@ -35,6 +35,16 @@ public class Acervo {
         }
         return livrosEncontrados;
     }
+
+    public Livro getLivro(String titulo){
+        for (Livro livro : livros){
+            if (titulo.equals(livro.getTitulo())){
+                return livro;
+            }
+        }
+        System.out.println("Nenhum livro com o título " + titulo + "foi encontrado.");
+        return null;
+    }
     
     public boolean contemLivro(String pesquisa) {
         for (Livro livro : livros){

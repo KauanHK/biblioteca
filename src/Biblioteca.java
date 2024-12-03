@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
@@ -7,6 +8,14 @@ public class Biblioteca {
     private List<Professor> professores;
     private List<Funcionario> funcionarios;
     private List<Multa> multas;
+
+    public Biblioteca(Acervo acervo){
+        this.acervo = acervo;
+        this.alunos = new ArrayList<Aluno>();
+        this.professores = new ArrayList<Professor>();
+        this.funcionarios = new ArrayList<Funcionario>();
+        this.multas = new ArrayList<Multa>();
+    }
 
     public void cadastrarAluno(Aluno aluno) {
         if (alunos.contains(aluno)) {
