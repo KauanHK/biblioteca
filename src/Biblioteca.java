@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +12,10 @@ public class Biblioteca {
 
     public Biblioteca(Acervo acervo){
         this.acervo = acervo;
-        this.alunos = new ArrayList<Aluno>();
-        this.professores = new ArrayList<Professor>();
-        this.funcionarios = new ArrayList<Funcionario>();
-        this.multas = new ArrayList<Multa>();
+        this.alunos = new ArrayList<>();
+        this.professores = new ArrayList<>();
+        this.funcionarios = new ArrayList<>();
+        this.multas = new ArrayList<>();
     }
 
     public void cadastrarAluno(Aluno aluno) {
@@ -42,6 +43,50 @@ public class Biblioteca {
             funcionarios.add(funcionario);
             System.out.println("Funcionário " + funcionario.getNome() + " cadastrado com sucesso.");
         }
+    }
+
+    public void fazerEmprestimo(Pessoa usuario, Livro livro){
+
+        if (!livro.isDisponivel()){
+            System.out.println("Livro " + livro.getTitulo() + " indisponível até " + livro.getDataDevolucao());
+            return;
+        }
+
+        if (usuario.getStatus().equals(Pessoa.PENDENTE)){
+            System.out.println("Empreśtimo negado: " + usuario.getNome() + " possui devolução de livro(s) pendente(s).");
+            return;
+        }
+
+        LocalDate hoje = LocalDate.now();
+        Emprestimo emprestimo = new Emprestimo(livro, usuario, hoje, hoje.plusDays(14));
+        livro.emprestar(emprestimo);
+        usuario.emprestar(emprestimo);
+        System.out.println("Livro '" + livro.getTitulo() + "' emprestado para " + usuario.getNome() + " com sucesso.");
+
+    }
+
+    public void devolverLivro(Pessoa usuario, Livro livro){
+
+        if (!usuario.getLivrosEmprestados().contains(livro)){
+            System.out.println(
+                    "Erro: " + usuario.getNome() + " não possui o livro " +
+                    livro.getTitulo() + " emprestado"
+            );
+            return;
+        }
+
+        double valorMulta = livro.calcularMulta();
+        if (valorMulta > 0) {
+            Multa multa = new Multa(valorMulta, livro.getEmprestimo());
+            multas.add(multa);
+            usuario.adicionarMulta(multa);
+            System.out.println("Devolução atrasada. Multa: R$" + valorMulta);
+        }
+
+        usuario.devolver(livro);
+
+        System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso.");
+
     }
 
     public String gerarRelatorioEmprestimos() {
