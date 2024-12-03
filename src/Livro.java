@@ -6,7 +6,7 @@ public class Livro {
     private final static String EMPRESTADO = "Emprestado";
     private final static String DISPONIVEL = "Disponível";
 
-    private static int idCounter;
+    private static int idCounter = 1;
 
     private final int id;
     private final String titulo;
@@ -14,7 +14,6 @@ public class Livro {
     private final int anoPublicacao;
     private String status;
     private LocalDate dataDevolucao;
-    private boolean disponivel;
 
 
     public Livro(String titulo, String autor, int anoPublicacao) {
@@ -26,10 +25,6 @@ public class Livro {
         idCounter++;
         this.status = DISPONIVEL;
         this.dataDevolucao = null;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
     }
 
     public int getId() {
@@ -66,8 +61,8 @@ public class Livro {
         this.status = "Disponível";
     }
 
-    public void renovar(LocalDate novaData) {
-        this.dataDevolucao = novaData;
+    public void renovar(int numDeDias) {
+        dataDevolucao = dataDevolucao.plusDays(numDeDias);
     }
 
     public boolean isDisponivel() {
