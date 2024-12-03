@@ -8,12 +8,11 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
     private String status;
     
-    public Emprestimo(Livro livro, Pessoa usuario, LocalDate dataEmprestimo, LocalDate dataDevolucao, String status) {
+    public Emprestimo(Livro livro, Pessoa usuario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
-        this.status = status;
     }
 
     public Livro getLivro() {
