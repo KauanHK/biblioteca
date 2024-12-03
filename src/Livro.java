@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 
 public class Livro {
 
@@ -14,12 +16,14 @@ public class Livro {
     private final int anoPublicacao;
     private String status;
     private LocalDate dataDevolucao;
+    private Emprestimo emprestimo;
 
 
     public Livro(String titulo, String autor, int anoPublicacao) {
         this.titulo = titulo;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
+        this.emprestimo = null;
 
         this.id = idCounter;
         idCounter++;
@@ -51,14 +55,23 @@ public class Livro {
         return dataDevolucao;
     }
 
-    public void emprestar() {
-        this.dataDevolucao = LocalDate.now().plusDays(14);
+    public void setDataDevolucao(LocalDate dataDevolucao){
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public Emprestimo getEmprestimo() {
+        return emprestimo;
+    }
+
+    public void emprestar(Emprestimo emprestimo) {
+        this.emprestimo = emprestimo;
+        this.dataDevolucao = emprestimo.getDataDevolucao();
         this.status = EMPRESTADO;
     }
 
     public void devolver() {
         this.dataDevolucao = null;
-        this.status = "Disponível";
+        this.status = DISPONIVEL;
     }
 
     public void renovar(int numDeDias) {
@@ -67,6 +80,15 @@ public class Livro {
 
     public boolean isDisponivel() {
         return this.status.equals(DISPONIVEL);
+    }
+
+    public double calcularMulta(){
+
+        LocalDate hoje = LocalDate.now();
+        if (hoje.isAfter(dataDevolucao)){
+            return 0.75 * ChronoUnit.DAYS.between(dataDevolucao, hoje);
+        }
+        return 0;
     }
 
     public void imprimir() {
