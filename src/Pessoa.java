@@ -8,12 +8,13 @@ public class Pessoa {
     protected static final String NORMAL = "Normal";
     protected static final String PENDENTE = "Pendente";
 
-    protected String nome;
-    protected String telefone;
-    protected String status;
-    protected int limiteEmprestimo;
-    protected List<Emprestimo> historicoEmprestimo;
-    protected List<Livro> livrosEmprestados;
+    private String nome;
+    private String telefone;
+    private String status;
+    private int limiteEmprestimo;
+    private List<Livro> livrosEmprestados;
+    private List<Emprestimo> historicoEmprestimo;
+    private List<Multa> multas;
 
     private final int id;
     private static int idCounter = 0;
