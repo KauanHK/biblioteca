@@ -1,16 +1,19 @@
 public class Multa {
 
-    private float valor;
+    private static final String PENDENTE = "Pendente";
+    private static final String PAGO = "Pago";
+
+    private double valor;
     private Emprestimo emprestimo;
     private String status;
 
-    public Multa(float valor, Emprestimo emprestimo, String status) {
+    public Multa(double valor, Emprestimo emprestimo) {
         this.valor = valor;
         this.emprestimo = emprestimo;
-        this.status = status;
+        this.status = PENDENTE;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
