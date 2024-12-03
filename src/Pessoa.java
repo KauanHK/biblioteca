@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Pessoa {
         this.telefone = telefone;
         this.limiteEmprestimo = limiteEmprestimo;
         this.livrosEmprestados = new ArrayList<Livro>();
+        this.historicoEmprestimo = new ArrayList<>();
         this.status = NORMAL;
         this.id = idCounter;
         idCounter++;
@@ -73,6 +75,9 @@ public class Pessoa {
 
     public void emprestaLivro(Livro livro){
         livrosEmprestados.add(livro);
+        LocalDate hoje = LocalDate.now();
+        Emprestimo emprestimo = new Emprestimo(livro,this, hoje, hoje.plusDays(14));
+        historicoEmprestimo.add(emprestimo);
     }
 
     public void devolverLivro(Livro livro) {
@@ -81,7 +86,8 @@ public class Pessoa {
             return;
         }
         livro.devolver();
-        System.out.println("Livro devolvido com sucesso.");
+        livrosEmprestados.remove(livro);
+        System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso.");
     }
 
 }
