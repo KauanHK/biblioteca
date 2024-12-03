@@ -23,8 +23,9 @@ public class Pessoa {
         this.nome = nome;
         this.telefone = telefone;
         this.limiteEmprestimo = limiteEmprestimo;
-        this.livrosEmprestados = new ArrayList<Livro>();
+        this.livrosEmprestados = new ArrayList<>();
         this.historicoEmprestimo = new ArrayList<>();
+        this.multas = new ArrayList<>();
         this.status = NORMAL;
         this.id = idCounter;
         idCounter++;
@@ -74,21 +75,22 @@ public class Pessoa {
         this.historicoEmprestimo = historicoEmprestimo;
     }
 
-    public void emprestaLivro(Livro livro){
-        livrosEmprestados.add(livro);
-        LocalDate hoje = LocalDate.now();
-        Emprestimo emprestimo = new Emprestimo(livro,this, hoje, hoje.plusDays(14));
-        historicoEmprestimo.add(emprestimo);
+    public List<Livro> getLivrosEmprestados(){
+        return livrosEmprestados;
     }
 
-    public void devolverLivro(Livro livro) {
-        if (!livrosEmprestados.contains(livro)){
-            System.out.println("ERRO: Usuário " + nome + " não tem o livro " + livro.getTitulo() + " emprestado.");
-            return;
-        }
-        livro.devolver();
+    public void emprestar(Emprestimo emprestimo){
+        historicoEmprestimo.add(emprestimo);
+        livrosEmprestados.add(emprestimo.getLivro());
+    }
+
+    public void devolver(Livro livro) {
         livrosEmprestados.remove(livro);
-        System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso.");
+        livro.devolver();
+    }
+
+    public void adicionarMulta(Multa multa){
+        multas.add(multa);
     }
 
 }
