@@ -5,8 +5,8 @@ public class Acervo {
 
     private final List<Livro> livros;
 
-    public Acervo(List<Livro> livros){
-        this.livros = livros;
+    public Acervo(){
+        this.livros = new ArrayList<>();
     }
     
     public List<Livro> getLivros() {
@@ -18,8 +18,8 @@ public class Acervo {
     }
     
     public void removerLivro(Livro livro){
-        boolean removido = livros.remove(livro);
-        if (removido){
+
+        if (livros.remove(livro)){
             System.out.println("Livro " + livro.getTitulo() + "removido com sucesso");
         } else {
             System.out.println("Erro: O acervo não contém o livro " + livro.getTitulo());
@@ -48,7 +48,7 @@ public class Acervo {
     
     public boolean contemLivro(String pesquisa) {
         for (Livro livro : livros){
-            if (livro.getTitulo().equals(pesquisa) || livro.getAutor().equals(pesquisa)){
+            if (livro.getTitulo().equals(pesquisa)){
                 return true;
             }
         }
