@@ -7,12 +7,12 @@ public class Pessoa {
     protected static final String NORMAL = "Normal";
     protected static final String PENDENTE = "Pendente";
 
-    private String nome;
-    private String telefone;
-    private String status;
-    private int limiteEmprestimo;
-    private List<Emprestimo> historicoEmprestimo;
-    private List<Livro> livrosEmprestados;
+    protected String nome;
+    protected String telefone;
+    protected String status;
+    protected int limiteEmprestimo;
+    protected List<Emprestimo> historicoEmprestimo;
+    protected List<Livro> livrosEmprestados;
 
     private final int id;
     private static int idCounter = 0;
