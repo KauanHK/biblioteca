@@ -93,4 +93,31 @@ public class Pessoa {
         multas.add(multa);
     }
 
+    public void pagarMulta(double valor){
+        if (multas.isEmpty()){
+            System.out.println(nome + " não possui nenhuma multa pendente.");
+            return;
+        }
+
+        Multa multa;
+        double aux;
+        while (valor > 0){
+            multa = multas.getLast();
+            System.out.println("Pagando multa do livro " + multa.getEmprestimo().getLivro().getTitulo());
+            aux = multa.getValor();
+            multa.pagar(valor);
+            valor -= aux;
+            System.out.println("Valor restante a pagar: R$" + multa.getValor());
+            if (multa.getValor() == 0){
+                System.out.println("Multa do livro " + multa.getEmprestimo().getLivro().getTitulo() + " quitada com sucesso.");
+                multas.removeLast();
+            }
+        }
+
+    }
+
+    public boolean isPendente(){
+        return !multas.isEmpty();
+    }
+
 }

@@ -52,8 +52,8 @@ public class Biblioteca {
             return;
         }
 
-        if (usuario.getStatus().equals(Pessoa.PENDENTE)){
-            System.out.println("Empreśtimo negado: " + usuario.getNome() + " possui devolução de livro(s) pendente(s).");
+        if (usuario.isPendente()){
+            System.out.println("Empreśtimo negado: " + usuario.getNome() + " possui devolução de livro(s) ou multa(s) pendente(s).");
             return;
         }
 
@@ -65,16 +65,9 @@ public class Biblioteca {
 
     }
 
-    public void devolverLivro(Pessoa usuario, Livro livro){
+    public void devolverLivro(Livro livro){
 
-        if (!usuario.getLivrosEmprestados().contains(livro)){
-            System.out.println(
-                    "Erro: " + usuario.getNome() + " não possui o livro " +
-                    livro.getTitulo() + " emprestado"
-            );
-            return;
-        }
-
+        Pessoa usuario = livro.getEmprestimo().getUsuario();
         double valorMulta = livro.calcularMulta();
         if (valorMulta > 0) {
             Multa multa = new Multa(valorMulta, livro.getEmprestimo());
@@ -89,6 +82,10 @@ public class Biblioteca {
 
     }
 
+    public void pagarMulta(Pessoa usuario, double valor){
+        usuario.pagarMulta(valor);
+    }
+
     public String gerarRelatorioEmprestimos() {
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório de Empréstimos:\n");
@@ -101,8 +98,9 @@ public class Biblioteca {
         return relatorio.toString();
     }
 
-    StringBuilder relatorio = new StringBuilder();
+
     public String gerarRelatorioMultas() {
+        StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório de Multas:\n");
         for (Multa multa : multas) {
             relatorio.append("Usuário: ").append(multa.getEmprestimo().getUsuario().getNome()).append(", Valor: R$")

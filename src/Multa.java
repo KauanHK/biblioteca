@@ -42,8 +42,12 @@ public class Multa {
         return multa;
     }
 
-    public void pagar(float valor) {
-
+    public void pagar(double valor) {
+        if (valor >= this.valor){
+            this.valor = 0;
+            return;
+        }
+        this.valor -= valor;
     }
 
     public String verificarStatus(String status) {
