@@ -85,7 +85,7 @@ public class Biblioteca {
 
     }
 
-    public String gerarRelatorioEmprestimos() {
+    public void gerarRelatorioEmprestimos() {
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório de Empréstimos:\n");
         for (Livro livro : acervo.getLivros()) {
@@ -94,31 +94,42 @@ public class Biblioteca {
                         .append(livro.getDataDevolucao()).append("\n");
             }
         }
-        return relatorio.toString();
+        System.out.println(relatorio);
     }
 
-    public String gerarRelatorioMultas() {
+    public void gerarRelatorioMultas() {
+        if (multas.isEmpty()){
+            System.out.println("Nenhuma multa registrada.");
+            return;
+        }
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório de Multas:\n");
         for (Multa multa : multas) {
             relatorio.append("Usuário: ").append(multa.getEmprestimo().getUsuario().getNome()).append(", Valor: R$")
                     .append(multa.getValor()).append(", Status: ").append(multa.getStatus()).append("\n");
         }
-        return relatorio.toString();
+        System.out.println("================================");
+        System.out.println(relatorio);
+        System.out.println("================================");
     }
 
-    public String gerarRelatorioUsuarios() {
+    public void gerarRelatorioUsuarios() {
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório de Usuários:\n");
-        for (Aluno aluno : alunos) {
-            relatorio.append("Aluno: ").append(aluno.getNome()).append("\n");
+        for (Pessoa usuario : usuarios){
+
+            if (usuario instanceof Aluno){
+                relatorio.append("Aluno: ");
+            } else if (usuario instanceof Professor){
+                relatorio.append("Professor: ");
+            } else
+                relatorio.append("Funcionário: ");
+
+            relatorio.append(usuario.getNome())
+                    .append(", Total de multas: R$")
+                    .append(usuario.getSomaMultas())
+                    .append("\n");
         }
-        for (Professor professor : professores) {
-            relatorio.append("Professor: ").append(professor.getNome()).append("\n");
-        }
-        for (Funcionario funcionario : funcionarios) {
-            relatorio.append("Funcionário: ").append(funcionario.getNome()).append("\n");
-        }
-        return relatorio.toString();
+        System.out.print(relatorio);
     }
 }
