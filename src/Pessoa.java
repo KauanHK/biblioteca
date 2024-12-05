@@ -93,6 +93,14 @@ public class Pessoa {
         livro.devolver();
     }
 
+    public double getSomaMultas(){
+        double total = 0;
+        for (Multa multa : multas){
+            total += multa.getValor();
+        }
+        return total;
+    }
+
     public void adicionarMulta(Multa multa){
         multas.add(multa);
     }
