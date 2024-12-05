@@ -53,8 +53,7 @@ public class Multa {
         return 0;
     }
 
-    public String verificarStatus(String status) {
-
-        return status;
+    public boolean isPendente() {
+        return status.equals(PENDENTE);
     }
 }
