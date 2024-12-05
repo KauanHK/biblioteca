@@ -65,7 +65,7 @@ public class Biblioteca {
 
     }
 
-    public void devolverLivro(Livro livro){
+    public void finalizarEmprestimo(Livro livro){
 
         Pessoa usuario = livro.getEmprestimo().getUsuario();
         double valorMulta = livro.calcularMulta();
@@ -83,7 +83,15 @@ public class Biblioteca {
     }
 
     public void pagarMulta(Pessoa usuario, double valor){
+
+        if (!usuario.isPendente()){
+            System.out.println(usuario.getNome() + " não possui multas a pagar.");
+            return;
+        }
+
+        System.out.println(usuario.getNome() + " possui R$" + usuario.getSomaMultas() + " em multa(s) para pagar.");
         usuario.pagarMulta(valor);
+
     }
 
     public String gerarRelatorioEmprestimos() {
@@ -97,7 +105,6 @@ public class Biblioteca {
         }
         return relatorio.toString();
     }
-
 
     public String gerarRelatorioMultas() {
         StringBuilder relatorio = new StringBuilder();
