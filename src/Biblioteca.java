@@ -4,45 +4,36 @@ import java.util.List;
 
 public class Biblioteca {
 
-    private Acervo acervo;
-    private List<Aluno> alunos;
-    private List<Professor> professores;
-    private List<Funcionario> funcionarios;
+    private final Acervo acervo;
+    public final List<Pessoa> usuarios = new ArrayList<>();
     private List<Multa> multas;
 
     public Biblioteca(Acervo acervo){
         this.acervo = acervo;
-        this.alunos = new ArrayList<>();
-        this.professores = new ArrayList<>();
-        this.funcionarios = new ArrayList<>();
         this.multas = new ArrayList<>();
     }
 
-    public void cadastrarAluno(Aluno aluno) {
-        if (alunos.contains(aluno)) {
-            System.out.println("Aluno já cadastrado.");
+    public void cadastrarUsuario(Pessoa usuario){
+        if (usuarios.contains(usuario)){
+            System.out.println("Usuário já cadastrado.");
+            return;
         } else {
-            alunos.add(aluno);
-            System.out.println("Aluno " + aluno.getNome() + " cadastrado com sucesso.");
+            for (Pessoa user : usuarios){
+                if (user.getTelefone().equals(usuario.getTelefone())){
+                    System.out.println("Cadastro negado: Já existe um usuário com esse número de telefone.");
+                    return;
+                }
+            }
         }
-    }
+        usuarios.add(usuario);
+        if (usuario instanceof Aluno){
+            System.out.print("Aluno: ");
+        } else if (usuario instanceof Professor){
+            System.out.print("Professor: ");
+        } else
+            System.out.print("Funcionário: ");
+        System.out.println(usuario.getNome() + " cadastrado com sucesso.");
 
-    public void cadastrarProfessor(Professor professor) {
-        if (professores.contains(professor)) {
-            System.out.println("Professor já cadastrado.");
-        } else {
-            professores.add(professor);
-            System.out.println("Professor " + professor.getNome() + " cadastrado com sucesso.");
-        }
-    }
-
-    public void cadastrarFuncionario(Funcionario funcionario) {
-        if (funcionarios.contains(funcionario)) {
-            System.out.println("Funcionário já cadastrado.");
-        } else {
-            funcionarios.add(funcionario);
-            System.out.println("Funcionário " + funcionario.getNome() + " cadastrado com sucesso.");
-        }
     }
 
     public void fazerEmprestimo(Pessoa usuario, Livro livro){
