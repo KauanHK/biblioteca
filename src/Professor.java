@@ -1,9 +1,9 @@
-public class Professor extends Funcionario{
+public class Professor extends Pessoa{
 
     private String disciplina;
     
-    public Professor(String nome, String telefone, int limiteEmprestimo, String departamento, String cargo, String disciplina) {
-        super(nome, telefone, limiteEmprestimo, departamento, cargo);
+    public Professor(String nome, String telefone, String disciplina) {
+        super(nome, telefone, 10);
         this.disciplina = disciplina;
     }
 
