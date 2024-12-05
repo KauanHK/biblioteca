@@ -75,6 +75,10 @@ public class Pessoa {
         this.historicoEmprestimo = historicoEmprestimo;
     }
 
+    public List<Multa> getMultas(){
+        return multas;
+    }
+
     public List<Livro> getLivrosEmprestados(){
         return livrosEmprestados;
     }
