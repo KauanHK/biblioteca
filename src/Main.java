@@ -27,6 +27,8 @@ public class Main {
             executar(scanner, biblioteca, opcao);
         } while (opcao != SAIR);
 
+        scanner.close();
+
     }
 
     private static void exibirOpcoes(){
@@ -48,9 +50,11 @@ public class Main {
             if (scanner.hasNextInt()) {
                 int opcao = scanner.nextInt();
                 if (opcao >= 0 && opcao <= numOpcoes) {
+                    scanner.nextLine();
                     return opcao;
                 }
             }
+            scanner.next();
             System.out.println("Opção inválida.");
         }
 
@@ -94,27 +98,29 @@ public class Main {
         System.out.println("4 - Voltar");
         int opcao = getOpcao(scanner, 4);
 
-        switch (opcao){
+        while (true) {
+            switch (opcao) {
 
-            case 1:
-                cadastrarAluno(scanner, biblioteca);
-                break;
+                case 1:
+                    cadastrarAluno(scanner, biblioteca);
+                    return;
 
-            case 2:
-                cadastrarProfessor(scanner, biblioteca);
-                break;
+                case 2:
+                    cadastrarProfessor(scanner, biblioteca);
+                    return;
 
-            case 3:
-                cadastrarFuncionario(scanner, biblioteca);
-                break;
+                case 3:
+                    cadastrarFuncionario(scanner, biblioteca);
+                    return;
 
-            case 4:
-                System.out.println("Voltando...");
-                break;
+                case 4:
+                    System.out.println("Voltando...");
+                    return;
 
-            default:
-                System.out.println("Entrada inválida.");
+                default:
+                    System.out.println("Entrada inválida.");
 
+            }
         }
 
     }
