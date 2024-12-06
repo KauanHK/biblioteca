@@ -1,4 +1,9 @@
-import java.time.LocalDate;
+package usuarios;
+
+import livro.Emprestimo;
+import livro.Livro;
+import livro.Multa;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,7 +118,7 @@ public class Pessoa {
                 multas.remove(multa);
             }
             if (valor == 0) break;
-            System.out.println("Multa do livro '" + multa.getEmprestimo().getLivro().getTitulo() + "' quitada.");
+            System.out.println("livro.Multa do livro '" + multa.getEmprestimo().getLivro().getTitulo() + "' quitada.");
         }
 
         if (multas.isEmpty()){

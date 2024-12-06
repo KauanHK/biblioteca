@@ -1,3 +1,7 @@
+package biblioteca;
+
+import livro.Livro;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +24,7 @@ public class Acervo {
     public void removerLivro(Livro livro){
 
         if (livros.remove(livro)){
-            System.out.println("Livro " + livro.getTitulo() + "removido com sucesso");
+            System.out.println("livro.Livro " + livro.getTitulo() + "removido com sucesso");
         } else {
             System.out.println("Erro: O acervo não contém o livro " + livro.getTitulo());
         }

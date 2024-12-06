@@ -1,3 +1,7 @@
+package usuarios;
+
+import livro.Livro;
+
 public class Professor extends Pessoa{
 
     private String disciplina;
@@ -18,7 +22,7 @@ public class Professor extends Pessoa{
     public String solicitarEmprestimo(Livro livro, String emprestimo){
 
             if (!livro.isDisponivel()) {
-                return "Livro não disponível para empréstimo";
+                return "livro.Livro não disponível para empréstimo";
             }
             
             if (getLimiteEmprestimo() <= 0) {
@@ -29,7 +33,7 @@ public class Professor extends Pessoa{
             
             emprestimo = "Empréstimo realizado para o professor " + getNome() + 
                          " - Disciplina: " + getDisciplina() + 
-                         " - Livro: " + livro.getTitulo();
+                         " - livro.Livro: " + livro.getTitulo();
             
             return emprestimo;
         }

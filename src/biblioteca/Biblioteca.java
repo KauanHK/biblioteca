@@ -1,3 +1,14 @@
+package biblioteca;
+
+import exceptions.LivroNaoEncontradoException;
+import exceptions.TelefoneNaoEncontradoException;
+import livro.Emprestimo;
+import livro.Livro;
+import livro.Multa;
+import usuarios.Aluno;
+import usuarios.Pessoa;
+import usuarios.Professor;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +22,23 @@ public class Biblioteca {
     public Biblioteca(Acervo acervo){
         this.acervo = acervo;
         this.multas = new ArrayList<>();
+    }
+
+    public Acervo getAcervo(){
+        return acervo;
+    }
+
+    public List<Livro> getLivros(){
+        List<Livro> livros = new ArrayList<>();
+        for (Livro livro : acervo.getLivros()){
+            livros.add(livro);
+        }
+        return livros;
+    }
+
+    public void adicionarLivro(Livro livro){
+        acervo.adicionarLivro(livro);
+        System.out.println("Livro " + livro.getTitulo() + " adicionado com sucesso.");
     }
 
     public void cadastrarUsuario(Pessoa usuario){
@@ -39,7 +67,7 @@ public class Biblioteca {
     public void fazerEmprestimo(Pessoa usuario, Livro livro){
 
         if (!livro.isDisponivel()){
-            System.out.println("Livro " + livro.getTitulo() + " indisponível até " + livro.getDataDevolucao());
+            System.out.println("livro.Livro " + livro.getTitulo() + " indisponível até " + livro.getDataDevolucao());
             return;
         }
 
@@ -53,6 +81,7 @@ public class Biblioteca {
         livro.emprestar(emprestimo);
         usuario.emprestar(emprestimo);
         System.out.println("Livro '" + livro.getTitulo() + "' emprestado para " + usuario.getNome() + " com sucesso.");
+        System.out.println("Data de devolução: " + livro.getDataDevolucao());
 
     }
 
@@ -64,12 +93,12 @@ public class Biblioteca {
             Multa multa = new Multa(valorMulta, livro.getEmprestimo());
             multas.add(multa);
             usuario.adicionarMulta(multa);
-            System.out.println("Devolução atrasada. Multa: R$" + valorMulta);
+            System.out.println("Devolução atrasada. livro.Multa: R$" + valorMulta);
         }
 
         usuario.devolver(livro);
 
-        System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso.");
+        System.out.println("livro.Livro " + livro.getTitulo() + " devolvido com sucesso.");
 
     }
 
@@ -132,4 +161,33 @@ public class Biblioteca {
         }
         System.out.print(relatorio);
     }
+
+    public List<Pessoa> pesquisarUsuarioPorNome(String nome){
+
+        List<Pessoa> usuariosEncontrados = new ArrayList<>();
+        for (Pessoa usuario : usuarios){
+            if (usuario.getNome().equals(nome))
+                usuariosEncontrados.add(usuario);
+        }
+        return usuariosEncontrados;
+
+    }
+
+    public Pessoa pesquisarUsuarioPorTelefone(String telefone){
+        for (Pessoa usuario : usuarios){
+            if (usuario.getTelefone().equals(telefone))
+                return usuario;
+        }
+        throw new TelefoneNaoEncontradoException(telefone);
+    }
+
+    public Livro pesquisarLivro(String titulo){
+
+        for (Livro livro : acervo.getLivros()) {
+            if (livro.getTitulo().equals(titulo))
+                return livro;
+        }
+        throw new LivroNaoEncontradoException(titulo);
+    }
+
 }

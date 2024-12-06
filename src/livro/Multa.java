@@ -1,3 +1,5 @@
+package livro;
+
 public class Multa {
 
     private static final String PENDENTE = "Pendente";
