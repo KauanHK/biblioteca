@@ -1,5 +1,6 @@
 package biblioteca;
 
+import exceptions.LivroNaoEncontradoException;
 import livro.Livro;
 
 import java.util.ArrayList;
@@ -22,12 +23,11 @@ public class Acervo {
     }
     
     public void removerLivro(Livro livro){
-
         if (livros.remove(livro)){
-            System.out.println("livro.Livro " + livro.getTitulo() + "removido com sucesso");
-        } else {
-            System.out.println("Erro: O acervo não contém o livro " + livro.getTitulo());
+            System.out.println("Livro " + livro.getTitulo() + "removido com sucesso");
+            return;
         }
+        System.out.println("Erro: O acervo não contém o livro " + livro.getTitulo());
     }
     
     public List<Livro> pesquisarLivros(String pesquisa){
@@ -40,14 +40,13 @@ public class Acervo {
         return livrosEncontrados;
     }
 
-    public Livro getLivro(String titulo){
+    public Livro pesquisarLivro(String titulo){
         for (Livro livro : livros){
             if (titulo.equals(livro.getTitulo())){
                 return livro;
             }
         }
-        System.out.println("Nenhum livro com o título " + titulo + "foi encontrado.");
-        return null;
+        throw new LivroNaoEncontradoException(titulo);
     }
     
     public boolean contemLivro(String pesquisa) {

@@ -29,11 +29,29 @@ public class Biblioteca {
     }
 
     public List<Livro> getLivros(){
-        List<Livro> livros = new ArrayList<>();
-        for (Livro livro : acervo.getLivros()){
-            livros.add(livro);
+        return acervo.getLivros();
+    }
+
+    public List<Livro> getLivrosEmprestados(){
+        List<Livro> livrosEmprestados = new ArrayList<>();
+        for (Livro livro : getLivros()){
+            if (!livro.isDisponivel())
+                livrosEmprestados.add(livro);
         }
-        return livros;
+        return livrosEmprestados;
+    }
+
+    public List<Livro> getLivrosDisponiveis(){
+        List<Livro> livrosDisponiveis = new ArrayList<>();
+        for (Livro livro : getLivros()){
+            if (livro.isDisponivel())
+                livrosDisponiveis.add(livro);
+        }
+        return livrosDisponiveis;
+    }
+
+    public Livro pesquisarLivro(String titulo){
+        return acervo.pesquisarLivro(titulo);
     }
 
     public void adicionarLivro(Livro livro){
@@ -98,7 +116,8 @@ public class Biblioteca {
 
         usuario.devolver(livro);
 
-        System.out.println("livro.Livro " + livro.getTitulo() + " devolvido com sucesso.");
+        System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso.");
+        System.out.println("Usuário: " + usuario.getNome());
 
     }
 
@@ -179,15 +198,6 @@ public class Biblioteca {
                 return usuario;
         }
         throw new TelefoneNaoEncontradoException(telefone);
-    }
-
-    public Livro pesquisarLivro(String titulo){
-
-        for (Livro livro : acervo.getLivros()) {
-            if (livro.getTitulo().equals(titulo))
-                return livro;
-        }
-        throw new LivroNaoEncontradoException(titulo);
     }
 
 }

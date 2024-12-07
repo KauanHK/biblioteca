@@ -67,6 +67,10 @@ public class Common {
                 Emprestimo.fazerEmprestimo(scanner, biblioteca);
                 break;
 
+            case FINALIZAR_EMPRESTIMO:
+                Emprestimo.finalizarEmprestimo(scanner, biblioteca);
+                break;
+
             case GERAR_RELATORIO:
                 Relatorio.gerar(scanner, biblioteca);
                 break;

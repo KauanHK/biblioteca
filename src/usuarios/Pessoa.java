@@ -133,4 +133,8 @@ public class Pessoa {
         return !multas.isEmpty();
     }
 
+    public boolean atingiuLimiteEmprestimos(){
+        return livrosEmprestados.size() >= limiteEmprestimo;
+    }
+
 }

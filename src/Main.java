@@ -1,7 +1,5 @@
 import biblioteca.Acervo;
 import biblioteca.Biblioteca;
-import livro.Livro;
-
 import java.util.Scanner;
 
 public class Main {
