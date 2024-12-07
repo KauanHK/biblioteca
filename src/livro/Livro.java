@@ -84,11 +84,10 @@ public class Livro {
         return this.status.equals(DISPONIVEL);
     }
 
-    public double calcularMulta(){
+    public double calcularMulta(LocalDate dataAtual){
 
-        LocalDate hoje = LocalDate.now();
-        if (hoje.isAfter(dataDevolucao)){
-            return 0.75 * ChronoUnit.DAYS.between(dataDevolucao, hoje);
+        if (dataAtual.isAfter(dataDevolucao)){
+            return 0.75 * ChronoUnit.DAYS.between(dataDevolucao, dataAtual);
         }
         return 0;
     }

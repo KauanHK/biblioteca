@@ -112,20 +112,22 @@ public class Pessoa {
 
     public void pagarMulta(double valor){
 
-        for (Multa multa : multas){
+        Multa multa;
+        while (valor > 0 && !multas.isEmpty()){
+            multa = multas.getFirst();
             valor = multa.pagar(valor);
             if (!multa.isPendente()){
-                multas.remove(multa);
+                multas.removeFirst();
             }
-            if (valor == 0) break;
-            System.out.println("livro.Multa do livro '" + multa.getEmprestimo().getLivro().getTitulo() + "' quitada.");
         }
 
-        if (multas.isEmpty()){
+        if (multas.isEmpty())
             System.out.println("Não há mais multas a pagar.");
-        } else {
+        else
             System.out.println("Ainda há R$" + getSomaMultas() + " em multa(s) a pagar.");
-        }
+
+        if (valor > 0)
+            System.out.println("Troco: R$" + valor);
 
     }
 
@@ -135,6 +137,10 @@ public class Pessoa {
 
     public boolean atingiuLimiteEmprestimos(){
         return livrosEmprestados.size() >= limiteEmprestimo;
+    }
+
+    public boolean possuiEmprestimos(){
+        return !livrosEmprestados.isEmpty();
     }
 
 }

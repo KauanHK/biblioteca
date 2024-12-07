@@ -16,7 +16,7 @@ public class Emprestimo {
 
         Pessoa usuario;
         try {
-            usuario = inputUsuario(scanner, biblioteca);
+            usuario = Common.inputUsuario(scanner, biblioteca);
         } catch (UsuarioNaoEncontradoException e){
             System.out.println("Erro: usuário não encontrado.");
             return;
@@ -29,7 +29,7 @@ public class Emprestimo {
 
         Livro livro;
         try {
-            livro = inputLivro(scanner, biblioteca.getLivrosDisponiveis());
+            livro = Common.inputLivro(scanner, biblioteca.getLivrosDisponiveis());
         } catch (LivroNaoEncontradoException e) {
             System.out.println("Erro: Livro não encontrado.");
             return;
@@ -43,62 +43,24 @@ public class Emprestimo {
 
     }
 
-    private static Pessoa inputUsuario(Scanner scanner, Biblioteca biblioteca){
 
-        while (true) {
-
-            System.out.print("Digite o nome do usuário: ");
-            String nome = scanner.nextLine();
-
-            List<Pessoa> usuarios = biblioteca.pesquisarUsuarioPorNome(nome);
-            if (usuarios.isEmpty()) {
-                throw new UsuarioNaoEncontradoException(nome);
-            }
-
-            if (usuarios.size() == 1)
-                return usuarios.getFirst();
-
-            System.out.println("Existem " + usuarios.size() + " usuários com esse nome.");
-            System.out.print("Digite o número de telefone: ");
-            String telefone = scanner.nextLine();
-            try {
-                return biblioteca.pesquisarUsuarioPorTelefone(telefone);
-            } catch (IndexOutOfBoundsException e){
-                System.out.println("Entrada inválida.");
-            }
-        }
-    }
-
-    private static Livro inputLivro(Scanner scanner, List<Livro> livros){
-
-        while (true) {
-            System.out.println("\nLivros:");
-            int n = 1;
-            for (Livro livro : livros) {
-                System.out.println(n + " - " + livro.getTitulo());
-                n++;
-            }
-            System.out.print("\nDigite o número de um livro: ");
-            n = scanner.nextInt();
-            try {
-                return livros.get(n - 1);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Entrada inválida.");
-            }
-        }
-    }
 
     public static void finalizarEmprestimo(Scanner scanner, Biblioteca biblioteca){
 
         Pessoa usuario;
         try {
-            usuario = inputUsuario(scanner, biblioteca);
+            usuario = Common.inputUsuario(scanner, biblioteca);
         } catch (UsuarioNaoEncontradoException e){
             System.out.println("Erro: usuário não encontrado.");
             return;
         }
 
-        Livro livro = inputLivro(scanner, biblioteca.getLivrosEmprestados());
+        if (!usuario.possuiEmprestimos()){
+            System.out.println(usuario.getNome() + " não possui nenhum livro para devolver.");
+            return;
+        }
+
+        Livro livro = Common.inputLivro(scanner, biblioteca.getLivrosEmprestados());
         biblioteca.finalizarEmprestimo(livro);
 
     }

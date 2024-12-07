@@ -1,5 +1,7 @@
 import biblioteca.Acervo;
 import biblioteca.Biblioteca;
+import inputs.Common;
+
 import java.util.Scanner;
 
 public class Main {
@@ -11,8 +13,8 @@ public class Main {
 
         int opcao;
         do {
-            inputs.Common.exibirOpcoes();
-            opcao = inputs.Common.getOpcao(scanner, 7);
+            inputs.Common.exibirOpcoes(biblioteca);
+            opcao = inputs.Common.getOpcao(scanner, 8);
             inputs.Common.executar(scanner, biblioteca, opcao);
         } while (opcao != inputs.Common.getSair());
 

@@ -1,7 +1,13 @@
 package inputs;
 
 import biblioteca.Biblioteca;
+import exceptions.TelefoneNaoEncontradoException;
+import exceptions.UsuarioNaoEncontradoException;
+import livro.Livro;
+import usuarios.Pessoa;
 
+import javax.naming.BinaryRefAddr;
+import java.util.List;
 import java.util.Scanner;
 
 public class Common {
@@ -11,8 +17,9 @@ public class Common {
     private static final int FINALIZAR_EMPRESTIMO = 3;
     private static final int PAGAR_MULTA = 4;
     private static final int GERAR_RELATORIO = 5;
-    private static final int SAIR = 6;
-    private static final int ADICIONAR_DADOS = 7;
+    private static final int ADIANTAR_DATA = 6;
+    private static final int SAIR = 7;
+    private static final int ADICIONAR_DADOS = 8;
 
     private static boolean dadosAdicionados = false;
 
@@ -37,15 +44,17 @@ public class Common {
 
     }
 
-    public static void exibirOpcoes(){
+    public static void exibirOpcoes(Biblioteca biblioteca){
+        System.out.println(biblioteca.getDataDehoje());
         System.out.println("1 - Cadastrar usuário");
         System.out.println("2 - Fazer empréstimo");
         System.out.println("3 - Finalizar empréstimo");
         System.out.println("4 - Pagar multa(s)");
         System.out.println("5 - Gerar relatório");
-        System.out.println("6 - Finalizar programa");
+        System.out.println("6 - Adiantar data");
+        System.out.println("7 - Finalizar programa");
         if (!dadosAdicionados){
-            System.out.println("7 - Adicionar dados fictícios");
+            System.out.println("8 - Adicionar dados fictícios");
         }
     }
 
@@ -71,8 +80,16 @@ public class Common {
                 Emprestimo.finalizarEmprestimo(scanner, biblioteca);
                 break;
 
+            case PAGAR_MULTA:
+                PagarMulta.pagar(scanner, biblioteca);
+                break;
+
             case GERAR_RELATORIO:
                 Relatorio.gerar(scanner, biblioteca);
+                break;
+
+            case ADIANTAR_DATA:
+                AdiantarData.adiantar(scanner, biblioteca);
                 break;
 
             case SAIR:
@@ -84,6 +101,64 @@ public class Common {
 
         }
         System.out.println();
+
+    }
+
+    public static Pessoa inputUsuario(Scanner scanner, Biblioteca biblioteca){
+
+        while (true) {
+
+            System.out.print("Digite o nome do usuário: ");
+            String nome = scanner.nextLine();
+
+            List<Pessoa> usuarios = biblioteca.pesquisarUsuarioPorNome(nome);
+            if (usuarios.isEmpty()) {
+                throw new UsuarioNaoEncontradoException(nome);
+            }
+
+            if (usuarios.size() == 1)
+                return usuarios.getFirst();
+
+            System.out.println("Existem " + usuarios.size() + " usuários com esse nome.");
+            System.out.print("Digite o número de telefone: ");
+            String telefone = scanner.nextLine();
+            try {
+                return biblioteca.pesquisarUsuarioPorTelefone(telefone);
+            } catch (TelefoneNaoEncontradoException e){
+                System.out.println("Entrada inválida.");
+            }
+        }
+    }
+
+    public static Livro inputLivro(Scanner scanner, List<Livro> livros){
+
+        while (true) {
+            System.out.println("\nLivros:");
+            int n = 1;
+            for (Livro livro : livros) {
+                System.out.println(n + " - " + livro.getTitulo());
+                n++;
+            }
+            System.out.print("\nDigite o número de um livro: ");
+            n = scanner.nextInt();
+            try {
+                return livros.get(n - 1);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Entrada inválida.");
+            }
+        }
+    }
+
+    public static double inputDouble(Scanner scanner){
+
+        while (true){
+
+            System.out.print("Digite um valor (R$): ");
+            if (scanner.hasNextDouble())
+                return scanner.nextDouble();
+            System.out.println("Entrada inválida.");
+
+        }
 
     }
 

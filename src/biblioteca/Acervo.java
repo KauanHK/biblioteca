@@ -19,6 +19,12 @@ public class Acervo {
     }
     
     public void adicionarLivro(Livro livro){
+        for (Livro livroBiblioteca : livros){
+            if (livro.getTitulo().equals(livroBiblioteca.getTitulo())){
+                System.out.println("O livro '" + livro.getTitulo() + "' já está registrado na biblioteca.");
+                return;
+            }
+        }
         livros.add(livro);
     }
     

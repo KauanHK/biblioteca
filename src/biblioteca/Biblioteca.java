@@ -1,6 +1,5 @@
 package biblioteca;
 
-import exceptions.LivroNaoEncontradoException;
 import exceptions.TelefoneNaoEncontradoException;
 import livro.Emprestimo;
 import livro.Livro;
@@ -17,15 +16,25 @@ public class Biblioteca {
 
     private final Acervo acervo;
     public final List<Pessoa> usuarios = new ArrayList<>();
-    private List<Multa> multas;
+    private List<Multa> historicoMultas;
+    private LocalDate dataDehoje;
 
     public Biblioteca(Acervo acervo){
         this.acervo = acervo;
-        this.multas = new ArrayList<>();
+        this.historicoMultas = new ArrayList<>();
+        this.dataDehoje = LocalDate.now();
+    }
+
+    public LocalDate getDataDehoje() {
+        return dataDehoje;
     }
 
     public Acervo getAcervo(){
         return acervo;
+    }
+
+    public void adiantarData(int numDias){
+        dataDehoje = dataDehoje.plusDays(numDias);
     }
 
     public List<Livro> getLivros(){
@@ -94,8 +103,7 @@ public class Biblioteca {
             return;
         }
 
-        LocalDate hoje = LocalDate.now();
-        Emprestimo emprestimo = new Emprestimo(livro, usuario, hoje, hoje.plusDays(14));
+        Emprestimo emprestimo = new Emprestimo(livro, usuario, dataDehoje, dataDehoje.plusDays(14));
         livro.emprestar(emprestimo);
         usuario.emprestar(emprestimo);
         System.out.println("Livro '" + livro.getTitulo() + "' emprestado para " + usuario.getNome() + " com sucesso.");
@@ -106,12 +114,12 @@ public class Biblioteca {
     public void finalizarEmprestimo(Livro livro){
 
         Pessoa usuario = livro.getEmprestimo().getUsuario();
-        double valorMulta = livro.calcularMulta();
+        double valorMulta = livro.calcularMulta(dataDehoje);
         if (valorMulta > 0) {
             Multa multa = new Multa(valorMulta, livro.getEmprestimo());
-            multas.add(multa);
+            historicoMultas.add(multa);
             usuario.adicionarMulta(multa);
-            System.out.println("Devolução atrasada. livro.Multa: R$" + valorMulta);
+            System.out.println("Devolução atrasada. Multa: R$" + valorMulta);
         }
 
         usuario.devolver(livro);
@@ -124,11 +132,10 @@ public class Biblioteca {
     public void pagarMulta(Pessoa usuario, double valor){
 
         if (!usuario.isPendente()){
-            System.out.println(usuario.getNome() + " não possui multas a pagar.");
+            System.out.println(usuario.getNome() + " não possui historicoMultas a pagar.");
             return;
         }
 
-        System.out.println(usuario.getNome() + " possui R$" + usuario.getSomaMultas() + " em multa(s) para pagar.");
         usuario.pagarMulta(valor);
 
     }
@@ -146,13 +153,13 @@ public class Biblioteca {
     }
 
     public void gerarRelatorioMultas() {
-        if (multas.isEmpty()){
+        if (historicoMultas.isEmpty()){
             System.out.println("Nenhuma multa registrada.");
             return;
         }
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório de Multas:\n");
-        for (Multa multa : multas) {
+        for (Multa multa : historicoMultas) {
             relatorio.append("Usuário: ").append(multa.getEmprestimo().getUsuario().getNome()).append(", Valor: R$")
                     .append(multa.getValor()).append(", Status: ").append(multa.getStatus()).append("\n");
         }
@@ -174,7 +181,7 @@ public class Biblioteca {
                 relatorio.append("Funcionário: ");
 
             relatorio.append(usuario.getNome())
-                    .append(", Total de multas: R$")
+                    .append(", Total de historicoMultas: R$")
                     .append(usuario.getSomaMultas())
                     .append("\n");
         }
