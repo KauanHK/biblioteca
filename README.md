@@ -7,7 +7,7 @@ O projeto **Sistema de Gerenciamento de Biblioteca** é uma aplicação em Java,
 - Kauan Kaestner
 - Lucar Timm
 - Ruan Klen
-- Vitor Aurelio
+- Vitor Mayer
 
 ---
 
