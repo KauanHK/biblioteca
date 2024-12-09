@@ -1,5 +1,5 @@
 # Sistema de gerenciamento de Biblioteca
-O projeto **Sistema de Gerenciamento de Biblioteca Online** é uma aplicação em Java, estruturada para gerenciar uma biblioteca, permitindo funcionalidades como busca, empréstimos de livros e controle de multas.
+O projeto **Sistema de Gerenciamento de Biblioteca** é uma aplicação em Java, estruturada para gerenciar uma biblioteca, permitindo funcionalidades como busca, empréstimos de livros e controle de multas.
 
 ---
 
@@ -39,3 +39,22 @@ Certifique-se de ter:
 - **src/livro:** Gerenciamento de livros, empréstimos e multas;
 - **src/biblioteca:** Gerenciamento do programa;
 - **src/inputs:** Inputs do usuário.
+
+## Como usar
+
+O programa funciona no terminal, com simples inputs.
+
+```bash
+1 - Cadastrar usuário
+2 - Adicionar livro
+3 - Fazer empréstimo
+4 - Finalizar empréstimo
+5 - Pagar multa(s)
+6 - Gerar relatório
+7 - Adiantar data
+8 - Finalizar programa
+9 - Adicionar dados fictícios
+Escolha uma opção: 9
+```
+
+Para adicionar alguns usuários e livros ao programa rapidamente, você pode escolher a opção 9. Serão adicionados 6 usuários e 12 livros.
