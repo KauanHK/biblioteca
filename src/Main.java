@@ -1,6 +1,5 @@
 import biblioteca.Acervo;
 import biblioteca.Biblioteca;
-import inputs.Common;
 
 import java.util.Scanner;
 
