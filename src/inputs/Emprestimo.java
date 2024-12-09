@@ -3,10 +3,7 @@ package inputs;
 import java.util.List;
 import java.util.Scanner;
 import biblioteca.Biblioteca;
-import exceptions.LivroIndisponivelException;
-import exceptions.LivroNaoEncontradoException;
-import exceptions.TelefoneNaoEncontradoException;
-import exceptions.UsuarioNaoEncontradoException;
+import exceptions.*;
 import livro.Livro;
 import usuarios.Pessoa;
 
@@ -32,6 +29,9 @@ public class Emprestimo {
             livro = Common.inputLivro(scanner, biblioteca.getLivrosDisponiveis());
         } catch (LivroNaoEncontradoException e) {
             System.out.println("Erro: Livro não encontrado.");
+            return;
+        } catch (NenhumLivroDisponivelException e){
+            System.out.println("Nenhum livro disponível para empréstimo.");
             return;
         }
 

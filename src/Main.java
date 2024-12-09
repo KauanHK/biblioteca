@@ -12,11 +12,12 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca(new Acervo());
 
         int opcao;
-        do {
+        boolean rodando = true;
+        while (rodando) {
             inputs.Common.exibirOpcoes(biblioteca);
-            opcao = inputs.Common.getOpcao(scanner, 8);
-            inputs.Common.executar(scanner, biblioteca, opcao);
-        } while (opcao != inputs.Common.getSair());
+            opcao = inputs.Common.getOpcao(scanner, -1);
+            rodando = inputs.Common.executar(scanner, biblioteca, opcao);
+        }
 
         scanner.close();
 

@@ -1,6 +1,7 @@
 package inputs;
 
 import biblioteca.Biblioteca;
+import exceptions.NenhumLivroDisponivelException;
 import exceptions.TelefoneNaoEncontradoException;
 import exceptions.UsuarioNaoEncontradoException;
 import livro.Livro;
@@ -13,21 +14,21 @@ import java.util.Scanner;
 public class Common {
 
     private static final int CADASTRAR = 1;
-    private static final int FAZER_EMPRESTIMO = 2;
-    private static final int FINALIZAR_EMPRESTIMO = 3;
-    private static final int PAGAR_MULTA = 4;
-    private static final int GERAR_RELATORIO = 5;
-    private static final int ADIANTAR_DATA = 6;
-    private static final int SAIR = 7;
-    private static final int ADICIONAR_DADOS = 8;
+    private static final int ADICIONAR_LIVRO = 2;
+    private static final int FAZER_EMPRESTIMO = 3;
+    private static final int FINALIZAR_EMPRESTIMO = 4;
+    private static final int PAGAR_MULTA = 5;
+    private static final int GERAR_RELATORIO = 6;
+    private static final int ADIANTAR_DATA = 7;
+    private static final int SAIR = 8;
+    private static final int ADICIONAR_DADOS = 9;
 
     private static boolean dadosAdicionados = false;
 
-    public static int getSair(){
-        return SAIR;
-    }
-
     public static int getOpcao(Scanner scanner, int numOpcoes){
+
+        if (numOpcoes == -1)
+            numOpcoes = ADICIONAR_DADOS;
 
         while (true){
             System.out.print("Escolha uma opção: ");
@@ -46,19 +47,20 @@ public class Common {
 
     public static void exibirOpcoes(Biblioteca biblioteca){
         System.out.println(biblioteca.getDataDehoje());
-        System.out.println("1 - Cadastrar usuário");
-        System.out.println("2 - Fazer empréstimo");
-        System.out.println("3 - Finalizar empréstimo");
-        System.out.println("4 - Pagar multa(s)");
-        System.out.println("5 - Gerar relatório");
-        System.out.println("6 - Adiantar data");
-        System.out.println("7 - Finalizar programa");
+        System.out.println(CADASTRAR + " - Cadastrar usuário");
+        System.out.println(ADICIONAR_LIVRO + " - Adicionar livro");
+        System.out.println(FAZER_EMPRESTIMO + " - Fazer empréstimo");
+        System.out.println(FINALIZAR_EMPRESTIMO + " - Finalizar empréstimo");
+        System.out.println(PAGAR_MULTA + " - Pagar multa(s)");
+        System.out.println(GERAR_RELATORIO + " - Gerar relatório");
+        System.out.println(ADIANTAR_DATA + " - Adiantar data");
+        System.out.println(SAIR + " - Finalizar programa");
         if (!dadosAdicionados){
-            System.out.println("8 - Adicionar dados fictícios");
+            System.out.println(ADICIONAR_DADOS + " - Adicionar dados fictícios");
         }
     }
 
-    public static void executar(Scanner scanner, Biblioteca biblioteca, int opcao){
+    public static boolean executar(Scanner scanner, Biblioteca biblioteca, int opcao){
 
         System.out.println();
         switch (opcao){
@@ -70,6 +72,10 @@ public class Common {
 
             case CADASTRAR:
                 Cadastro.cadastrar(scanner, biblioteca);
+                break;
+
+            case ADICIONAR_LIVRO:
+                AdicionarLivro.adicionarLivro(scanner, biblioteca);
                 break;
 
             case FAZER_EMPRESTIMO:
@@ -94,13 +100,14 @@ public class Common {
 
             case SAIR:
                 System.out.println("Finalizando programa...");
-                break;
+                return false;
 
             default:
                 System.out.println("Entrada inválida");
 
         }
         System.out.println();
+        return true;
 
     }
 
@@ -132,6 +139,10 @@ public class Common {
 
     public static Livro inputLivro(Scanner scanner, List<Livro> livros){
 
+        if (livros.isEmpty()){
+            throw new NenhumLivroDisponivelException();
+        }
+
         while (true) {
             System.out.println("\nLivros:");
             int n = 1;
@@ -160,6 +171,15 @@ public class Common {
 
         }
 
+    }
+
+    public static int inputInt(Scanner scanner){
+        while (true){
+            System.out.print("Digite o ano de  publicação: ");
+            if (scanner.hasNextInt())
+                return scanner.nextInt();
+            System.out.println("Entrada inválida.");
+        }
     }
 
 }

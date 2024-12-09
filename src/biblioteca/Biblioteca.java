@@ -181,7 +181,7 @@ public class Biblioteca {
                 relatorio.append("Funcionário: ");
 
             relatorio.append(usuario.getNome())
-                    .append(", Total de historicoMultas: R$")
+                    .append(", Total em Multas: R$")
                     .append(usuario.getSomaMultas())
                     .append("\n");
         }
