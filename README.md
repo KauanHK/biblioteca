@@ -1,8 +1,5 @@
-O projeto **Sistema de Gerenciamento de Biblioteca Online** é uma aplicação em Java, estruturada para gerenciar uma biblioteca, permitindo funcionalidades como busca e empréstimos de livros.
-
----
-
-## Sistema de Gerenciamento de Biblioteca Online
+# Sistema de gerenciamento de Biblioteca
+O projeto **Sistema de Gerenciamento de Biblioteca Online** é uma aplicação em Java, estruturada para gerenciar uma biblioteca, permitindo funcionalidades como busca, empréstimos de livros e controle de multas.
 
 ---
 
@@ -17,7 +14,7 @@ Certifique-se de ter:
 1. **Clone o Repositório**  
    No terminal, execute:
    ```bash
-   git clone https://github.com/Kauan/biblioteca.git
+   git clone https://github.com/KauanHK/biblioteca.git
    cd biblioteca
    ```
 
