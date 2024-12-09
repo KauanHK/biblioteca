@@ -1,6 +1,14 @@
 # Sistema de gerenciamento de Biblioteca
 O projeto **Sistema de Gerenciamento de Biblioteca** é uma aplicação em Java, estruturada para gerenciar uma biblioteca, permitindo funcionalidades como busca, empréstimos de livros e controle de multas.
 
+#### Integrantes do grupo
+- Eduardo Pasquali
+- Gustavo Voltolini
+- Kauan Kaestner
+- Lucar Timm
+- Ruan Klen
+- Vitor Aurelio
+
 ---
 
 ### Pré-requisitos
